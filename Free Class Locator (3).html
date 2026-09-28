@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Free Class Locator · SRM Trichy</title>
+<style>
+:root{--bg:#f5f6fb;--card:#fff;--ink:#141a2e;--mut:#667090;--line:#e2e5f0;--acc:#4f46e5;--accbg:#eceafd;--ok:#0c8a5f;--okbg:#e3f6ee;--warn:#a8650b;--warnbg:#fdf1d9;--busy:#e9b4b4;--strip:#e9ecf5;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1220;--card:#181c30;--ink:#eceffa;--mut:#9aa3c4;--line:#2a3050;--acc:#8b85ff;--accbg:#25284a;--ok:#3fd19a;--okbg:#12322a;--warn:#f0b35a;--warnbg:#382b12;--busy:#7a3a44;--strip:#252a45}}
+:root[data-theme="dark"]{--bg:#0f1220;--card:#181c30;--ink:#eceffa;--mut:#9aa3c4;--line:#2a3050;--acc:#8b85ff;--accbg:#25284a;--ok:#3fd19a;--okbg:#12322a;--warn:#f0b35a;--warnbg:#382b12;--busy:#7a3a44;--strip:#252a45}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.w{max-width:1000px;margin:0 auto;padding:18px 14px 40px}
+header{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap}
+h1{font-size:24px;margin:0;letter-spacing:-.02em}.sub{color:var(--mut);font-size:13px;margin-top:2px}
+.clock{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:8px 12px;font-size:13px;text-align:right}
+.clock b{font-size:18px;display:block}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px;margin-top:14px}
+.ai{border-color:var(--acc);box-shadow:0 0 0 3px var(--accbg)}
+.ai h2{margin:0 0 8px;font-size:15px}.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+input,select,button{font:inherit;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:10px;padding:8px 10px}
+#q{flex:1;min-width:200px;font-size:16px}
+button{cursor:pointer}button.p{background:var(--acc);color:#fff;border-color:var(--acc);font-weight:600}
+.ex{font-size:12px;color:var(--mut);padding:4px 9px;border-radius:99px;background:var(--bg)}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.chip{font-size:12px;font-weight:600;padding:3px 9px;border-radius:99px;background:var(--accbg);color:var(--acc)}
+.best{margin-top:12px;padding:12px;border-radius:12px;background:var(--okbg);color:var(--ink);border:1px solid var(--ok)}
+.best b{color:var(--ok)}
+.ctl{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px}
+.ctl label{font-size:11px;color:var(--mut);display:block;margin-bottom:3px;text-transform:uppercase;letter-spacing:.04em}
+.ctl select,.ctl input{width:100%}
+.seg{display:flex}.seg button{flex:1;border-radius:0;padding:8px 4px}.seg button:first-child{border-radius:10px 0 0 10px}.seg button:last-child{border-radius:0 10px 10px 0}.seg .on{background:var(--acc);color:#fff;border-color:var(--acc)}
+.banner{margin-top:12px;padding:10px 12px;border-radius:10px;background:var(--warnbg);color:var(--warn);font-size:13px}
+.stats{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}.st{flex:1;min-width:110px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px 12px}
+.st b{font-size:24px;display:block}.st span{font-size:12px;color:var(--mut)}
+.fl{margin-top:20px}.fl h3{margin:0 0 8px;font-size:16px;display:flex;justify-content:space-between;align-items:baseline}.fl h3 small{font-weight:400;color:var(--mut);font-size:12px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px}
+.r{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px;border-left:5px solid var(--ok)}
+.r.pt{border-left-color:var(--warn)}.r.bz{border-left-color:var(--busy);opacity:.85}
+.r .n{font-weight:700;font-size:16px}.tags{display:flex;gap:5px;flex-wrap:wrap;margin:5px 0}
+.tag{font-size:11px;padding:1px 7px;border-radius:99px;border:1px solid var(--line);color:var(--mut)}
+.s{font-size:13px}.s.ok{color:var(--ok);font-weight:600}.s.pt{color:var(--warn);font-weight:600}.s.bz{color:var(--mut)}
+.strip{position:relative;height:9px;border-radius:5px;background:var(--strip);margin-top:8px;overflow:hidden}
+.strip i{position:absolute;top:0;bottom:0;background:var(--busy)}.strip u{position:absolute;top:0;bottom:0;border:2px solid var(--acc);border-radius:4px;background:transparent}
+.ax{display:flex;justify-content:space-between;font-size:10px;color:var(--mut);margin-top:2px}
+.empty{color:var(--mut);font-size:13px;padding:8px}
+footer{margin-top:26px;font-size:12px;color:var(--mut)}
+</style></head><body><div class="w">
+<header><div><h1>🏫 Free Class Locator</h1><div class="sub">SRM Trichy · School of EEE · Odd Sem 2026-27 · built from 8 class timetables</div></div>
+<div class="clock"><b id="ck"></b><span id="dy"></span></div></header>
+
+<div class="card ai"><h2>✨ AI room finder — just say what you need</h2>
+<div class="row"><input id="q" placeholder="I need an AC room on the ground floor for me and my team for the next 2 hours" autocomplete="off"><button class="p" id="go">Find rooms</button></div>
+<div class="row" style="margin-top:8px" id="exs"></div>
+<div class="chips" id="int"></div><div id="best"></div></div>
+
+<div class="card"><div class="ctl">
+<div><label>Day</label><select id="fd"></select></div>
+<div><label>Start time</label><input type="time" id="ft"></div>
+<div><label>Need room for</label><select id="fu"><option value="30">30 min</option><option value="60">1 hour</option><option value="90">1.5 hours</option><option value="120">2 hours</option><option value="180">3 hours</option></select></div>
+<div><label>Air conditioning</label><div class="seg" id="fa"><button data-v="">Any</button><button data-v="1">AC</button><button data-v="0">Non-AC</button></div></div>
+<div><label>Floor</label><select id="ff"></select></div>
+<div><label>Group size</label><input type="number" id="fc" min="1" max="100"></div>
+<div><label>Labs</label><select id="fl"><option value="0">Hide labs</option><option value="1">Include labs</option></select></div>
+<div><label>&nbsp;</label><button id="now" class="p" style="width:100%">Use live time</button></div></div></div>
+
+<div id="bn"></div><div class="stats" id="stats"></div><div id="out"></div>
+<footer>Rooms are marked busy from every lecture, lab and CDC/venue cell in the timetables; gaps of 10 minutes or less (tea breaks) are treated as continuous use so you are not evicted mid-sit. Campus hours 9:00 AM–5:30 PM. AC, seating capacity and lab type are assumed campus metadata (not in the timetables) — edit the <code>ROOMS</code> table in the source to correct. Floor = hundreds digit (1xx Ground, 2xx First, …). First-year sheets in the upload are the older 2024-25 term and are not used.</footer></div>
+<script>
+const DN=["Mon","Tue","Wed","Thu","Fri","Sat","Sun"],FULL=["monday","tuesday","wednesday","thursday","friday","saturday","sunday"];
+const P=[[540,590],[590,640],[650,700],[700,750],[750,800],[800,850],[850,900],[910,960],[960,1010]],CLOSE=1050,OPEN=540;
+// [type, AC, seats]  (assumed metadata)
+const ROOMS={"IST 107":["Lab",1,40],"IST 108":["Lab",1,40],"TB-106":["Class",1,60],"IST 211":["Class",0,60],"IST 225":["Class",0,60],"IST 227":["Class",0,60],"IST 309":["Lab",1,40],"IST 401":["Class",1,70],"IST 411":["Class",1,60],"IST 518":["Class",1,70],"IST 519":["Class",1,70],"IST 602":["Class",1,60],"IST 625":["Class",1,80]};
+// [class, home venue, {day: cells P1..P9}] letter = lecture in home venue, @room = lab/CDC/venue override
+const TT=[
+["II BME","602",{Mon:"E,C,I,I,,@107+309,@107+309",Tue:"C,E,B,A,,@TB-106,@TB-106",Wed:"B,D,A,,,@TB-106,@602",Thu:"A,E,B,D,,,,@107+309,@107+309",Fri:"F,A,C,D,,,,@602,@602"}],
+["III BME","211",{Mon:"@625,@625,@107,@107,,E,B,F,H",Tue:"@108,@108,@625,,,C,D,A,B",Wed:",,,,,C,A,F,D",Thu:",,,@108,,A,C,E,B",Fri:"@108,,,,,F,A,D,E"}],
+["IV ECE-A","225",{Mon:"C,,A,D",Tue:"C,D,B,F",Wed:"B,@108,E,F",Thu:"F,A,E,B",Fri:"C,A,D,E"}],
+["III ECE-A","518",{Mon:"E,B,B,A,,@625,@625",Tue:"H,D,B,B,,,@625",Wed:"C,A,D,F,,,,@108+309,@108+309",Thu:"A,E,C,F",Fri:"D,A,E,C,,@108+309,@108+309"}],
+["II ECE-DS B","411",{Mon:",,@309+107,@309+107,,D,B,C,I",Tue:"@309+107,@309+107,,,,C,D,E,A",Wed:"@401,,,,,I,E,A,D",Thu:"@401,@401,@TB-106,@TB-106,,A,C,B,E",Fri:"@TB-106,,,,,F,A,B,C"}],
+["IV ECE-B","227",{Mon:"C,A,E,F",Tue:"C,E,F,B",Wed:"C,D,A,B",Thu:"D,B,@108,A",Fri:"E,D,F"}],
+["III ECE-B","518",{Mon:"@108+309,@108+309,,,,E,B,A,D",Tue:"@625,@625,,,,F,B,D,C",Wed:"@625,,,,,B,B,A,H",Thu:"@108+309,@108+309,,,,A,C,E,F",Fri:",,,,,C,A,E,D"}],
+["III ECE-DS","519",{Mon:"E,B,C,A",Tue:"C,B,D,F,,@108+107,@108+107",Wed:"H,B,A,C,,,,@625,@625",Thu:"A,D,E,F",Fri:"D,A,E,B,,@625,,@108+107,@108+107"}]];
+const rn=x=>/^\d/.test(x)?"IST "+x:x;
+const B={};Object.keys(ROOMS).forEach(r=>B[r]=DN.map(()=>[]));
+TT.forEach(([n,home,days])=>DN.forEach((d,di)=>{(days[d]||"").split(",").forEach((c,pi)=>{if(!c)return;(c[0]=="@"?c.slice(1).split("+"):[home]).forEach(x=>{const r=rn(x);if(B[r])B[r][di].push({s:P[pi][0],e:P[pi][1],l:[n]})})})}));
+Object.values(B).forEach(days=>days.forEach((a,i)=>{a.sort((x,y)=>x.s-y.s);const m=[];a.forEach(v=>{const l=m[m.length-1];if(l&&v.s-l.e<=10){l.e=Math.max(l.e,v.e);v.l.forEach(k=>l.l.includes(k)||l.l.push(k))}else m.push({...v})});days[i]=m}));
+
+const fm=m=>{m=Math.round(m);let h=Math.floor(m/60),mi=m%60,ap=h>=12?"PM":"AM";h=h%12||12;return h+":"+String(mi).padStart(2,"0")+" "+ap};
+const fd=m=>m>=60?Math.floor(m/60)+"h"+(m%60?" "+m%60+"m":""):m+" min";
+const flN=f=>f==0?"Ground floor":["","First","Second","Third","Fourth","Fifth","Sixth"][f]+" floor";
+const flOf=r=>Math.floor(+r.match(/\d+/)[0]/100)-1;
+const $=id=>document.getElementById(id);
+let S={live:true,day:0,start:600,dur:60,ac:null,floor:null,cap:1,labs:0,ai:null};
+function clockNow(){const d=new Date();S.day=(d.getDay()+6)%7;S.start=d.getHours()*60+d.getMinutes()}
+
+function status(r,t){const iv=B[r][S.day],c=iv.find(x=>t>=x.s&&t<x.e);
+ if(c)return{busy:1,until:c.e,l:c.l.join(", ")};
+ const nx=iv.find(x=>x.s>t),until=nx?nx.s:CLOSE;return{busy:0,free:Math.max(0,until-t),until,next:nx&&nx.l.join(", ")}}
+const NW={a:1,an:1,one:1,two:2,three:3,four:4,five:5,six:6};
+function tm(s){const r=s.match(/(\d{1,2})(?::(\d\d))?\s*(am|pm)?/);let h=+r[1];if(r[3]=="pm"&&h<12)h+=12;if(r[3]=="am"&&h==12)h=0;if(!r[3]&&h<8)h+=12;return h*60+(+r[2]||0)}
+function parse(q){q=q.toLowerCase();const o={},t=new Date();let m;
+ if(/\bnon[- ]?a\/?c\b|\bno a\/?c\b|without a\/?c\b|non[- ]air/.test(q))o.ac=0;else if(/\ba\/?c\b|air[- ]?condition|\bcool/.test(q))o.ac=1;
+ if(/ground|\bgf\b/.test(q))o.floor=0;
+ else if(m=q.match(/(\d)\s*(?:st|nd|rd|th)?\s*floor|floor\s*(\d)/))o.floor=+(m[1]||m[2]);
+ else if(m=q.match(/\b(first|second|third|fourth|fifth|sixth)\s+floor/))o.floor=["","first","second","third","fourth","fifth","sixth"].indexOf(m[1]);
+ else if(/\btop\b/.test(q))o.floor=5;
+ if(m=q.match(/(\d+)\s*(?:people|persons|students|members|friends|ppl|of us|guys)|(?:team|group) of (\d+)|(\d+)[- ]member/))o.cap=+(m[1]||m[2]||m[3]);
+ else if(/\bteam\b|\bgroup\b|project|friends|classmates/.test(q))o.cap=5;else if(/\balone\b|\bsolo\b|myself/.test(q))o.cap=1;
+ if(/\blabs?\b/.test(q))o.labs=1;
+ if(/tomorrow/.test(q))o.day=(((t.getDay()+6)%7)+1)%7;else if(/today|tonight/.test(q))o.day=(t.getDay()+6)%7;
+ FULL.forEach((f,i)=>{if(q.includes(f)||new RegExp("\\b"+f.slice(0,3)+"\\b").test(q))o.day=i});
+ if(m=q.match(/(?:\bat|from|after|starting)\s+(\d{1,2}(?::\d\d)?\s*(?:am|pm)?)/))o.start=tm(m[1]);
+ let end=null;if(m=q.match(/(?:till|until|by|before|upto)\s+(\d{1,2}(?::\d\d)?\s*(?:am|pm)?)/))end=tm(m[1]);
+ if(m=q.match(/(\d+(?:\.\d+)?|an?|one|two|three|four)\s*(?:hours?|hrs?|h)\b/))o.dur=(isNaN(m[1])?NW[m[1]]:+m[1])*60;
+ else if(m=q.match(/(\d+)\s*(?:minutes?|mins?)/))o.dur=+m[1];else if(/half (an )?hour/.test(q))o.dur=30;
+ return{o,end}}
+
+function ask(text){const {o,end}=parse(text);
+ S={...S,ac:o.ac??null,floor:o.floor??null,cap:o.cap||1,labs:o.labs||0,dur:o.dur||60};
+ if(o.day==null&&o.start==null){S.live=true;clockNow()}else{S.live=false;if(o.day!=null)S.day=o.day;if(o.start!=null)S.start=o.start;else if(o.day!=null&&S.day!=(((new Date().getDay()+6)%7))){S.start=o.day!=null&&end?540:S.start}}
+ if(end&&end>S.start)S.dur=end-S.start;
+ S.ai=text;render()}
+
+function strip(r){const iv=B[r][S.day],k=CLOSE-OPEN,pc=v=>((v-OPEN)/k*100)+"%";
+ return`<div class="strip">${iv.map(x=>`<i style="left:${pc(x.s)};width:${(x.e-x.s)/k*100}%"></i>`).join("")}<u style="left:${pc(Math.min(S.start,CLOSE))};width:${Math.min(S.dur,CLOSE-S.start)/k*100}%"></u></div><div class="ax"><span>9</span><span>11</span><span>1</span><span>3</span><span>5</span></div>`}
+
+function render(){
+ $("ck").textContent=fm(S.start);$("dy").textContent=DN[S.day]+(S.live?" · live":" · custom");
+ $("fd").value=S.day;$("ft").value=String(Math.floor(S.start/60)).padStart(2,"0")+":"+String(S.start%60).padStart(2,"0");
+ [...$("fu").options].forEach(o=>o.selected=+o.value==S.dur);if(![30,60,90,120,180].includes(S.dur)){const o=new Option(fd(S.dur),S.dur,1,1);$("fu").add(o)}
+ $("ff").value=S.floor==null?"":S.floor;$("fc").value=S.cap;$("fl").value=S.labs;
+ [...$("fa").children].forEach(b=>b.classList.toggle("on",b.dataset.v===(S.ac==null?"":String(S.ac))));
+ const t=S.start,closed=S.day>4||t>=CLOSE||t<OPEN-30;
+ $("bn").innerHTML=closed?`<div class="banner">⚠️ ${S.day>4?"No lectures scheduled on weekends — every room is free.":"Outside class hours (9:00 AM – 5:30 PM)."} Pick a weekday time to see real availability.</div>`:"";
+ let rooms=Object.keys(ROOMS).filter(r=>(S.labs||ROOMS[r][0]!="Lab")&&(S.ac==null||ROOMS[r][1]==S.ac)&&(S.floor==null||flOf(r)==S.floor)).map(r=>({r,m:ROOMS[r],st:status(r,t)}));
+ const seatOk=x=>x.m[2]>=S.cap;
+ rooms.forEach(x=>x.k=x.st.busy?"bz":!seatOk(x)?"bz":(x.st.free>=S.dur&&!(S.day>4&&false)&&!(t>=CLOSE))?"ok":"pt");
+ if(S.day>4)rooms.forEach(x=>{x.st={busy:0,free:Math.max(0,CLOSE-t),until:CLOSE};x.k=seatOk(x)&&t<CLOSE?"ok":"bz"});
+ const c=k=>rooms.filter(x=>x.k==k).length;
+ $("stats").innerHTML=`<div class="st"><b style="color:var(--ok)">${c("ok")}</b><span>free for your full ${fd(S.dur)}</span></div><div class="st"><b style="color:var(--warn)">${c("pt")}</b><span>free, but a class starts sooner</span></div><div class="st"><b>${c("bz")}</b><span>in use / too small</span></div>`;
+ // AI section
+ const ch=[DN[S.day]+" "+fm(S.start),"for "+fd(S.dur),S.ac==null?"AC or not":S.ac?"AC":"Non-AC",S.floor==null?"any floor":flN(S.floor),S.cap+" "+(S.cap>1?"people":"person")+" min. seats"];if(S.labs)ch.push("labs allowed");
+ $("int").innerHTML=S.ai?"<span class='sub' style='align-self:center'>Understood:</span>"+ch.map(x=>`<span class="chip">${x}</span>`).join(""):"";
+ const ok=rooms.filter(x=>x.k=="ok").sort((a,b)=>b.st.free-a.st.free||a.m[2]-b.m[2]);
+ $("best").innerHTML=S.ai?(ok.length?`<div class="best">✅ <b>Go to ${ok[0].r}</b> (${flN(flOf(ok[0].r))}) — free until <b>${fm(ok[0].st.until)}</b> (${fd(ok[0].st.free)}), ${ok[0].m[1]?"AC":"non-AC"}, ${ok[0].m[2]} seats.${ok.length>1?" Also: "+ok.slice(1,4).map(x=>x.r).join(", ")+(ok.length>4?" +"+(ok.length-4)+" more":"")+".":""}</div>`:`<div class="best" style="background:var(--warnbg);border-color:var(--warn)">😕 No room matches everything for the full ${fd(S.dur)}. ${rooms.filter(x=>x.k=="pt").length?"Closest: "+rooms.filter(x=>x.k=="pt").sort((a,b)=>b.st.free-a.st.free).slice(0,3).map(x=>x.r+" (free "+fd(x.st.free)+")").join(", ")+" — or relax the AC/floor filter.":"Try relaxing the AC or floor filter."}</div>`):"";
+ // floor by floor
+ const fl=[...new Set(rooms.map(x=>flOf(x.r)))].sort((a,b)=>a-b);
+ $("out").innerHTML=fl.length?fl.map(f=>{const rs=rooms.filter(x=>flOf(x.r)==f).sort((a,b)=>({ok:0,pt:1,bz:2}[a.k]-{ok:0,pt:1,bz:2}[b.k])||b.st.free-a.st.free);
+  return`<div class="fl"><h3>${flN(f)}<small>${rs.filter(x=>x.k=="ok").length} of ${rs.length} ready</small></h3><div class="grid">${rs.map(x=>{const s=x.st,small=!seatOk(x);
+  const msg=small?`Only ${x.m[2]} seats`:s.busy?`In use: ${s.l} · free at ${fm(s.until)}`:x.k=="ok"?`✔ Free ${fd(s.free)} · until ${fm(s.until)}`:`Free only ${fd(s.free)} — ${s.next||"class"} arrives ${fm(s.until)}`;
+  return`<div class="r ${x.k}"><div class="n">${x.r}</div><div class="tags"><span class="tag">${x.m[1]?"❄ AC":"Non-AC"}</span><span class="tag">${x.m[2]} seats</span><span class="tag">${x.m[0]}</span></div><div class="s ${x.k}">${msg}</div>${strip(x.r)}</div>`}).join("")}</div></div>`}).join(""):`<div class="empty">No rooms match these filters.</div>`}
+
+// wiring
+$("fd").innerHTML=DN.map((d,i)=>`<option value="${i}">${d}</option>`).join("");
+$("ff").innerHTML='<option value="">All floors</option>'+[0,1,2,3,4,5].map(f=>`<option value="${f}">${flN(f)}</option>`).join("");
+["Free AC room, ground floor, 2 hours, team","Non-AC room for 3 of us till 3pm","Room on 4th floor at 1:30pm on Friday for 90 minutes","Quiet lab tomorrow at 10am for 1 hour"].forEach(e=>{const b=document.createElement("button");b.className="ex";b.textContent=e;b.onclick=()=>{$("q").value=e;ask(e)};$("exs").appendChild(b)});
+$("go").onclick=()=>{if($("q").value.trim())ask($("q").value)};$("q").onkeydown=e=>{if(e.key=="Enter")$("go").click()};
+const man=()=>{S.live=false;S.ai=null;render()};
+$("fd").onchange=e=>{S.day=+e.target.value;man()};$("ft").onchange=e=>{const[h,m]=e.target.value.split(":");S.start=+h*60+ +m;man()};
+$("fu").onchange=e=>{S.dur=+e.target.value;render()};$("ff").onchange=e=>{S.floor=e.target.value===""?null:+e.target.value;render()};
+$("fc").oninput=e=>{S.cap=Math.max(1,+e.target.value||1);render()};$("fl").onchange=e=>{S.labs=+e.target.value;render()};
+$("fa").onclick=e=>{if(e.target.dataset.v==null)return;const v=e.target.dataset.v;S.ac=v===""?null:+v;render()};
+$("now").onclick=()=>{S.live=true;S.ai=null;clockNow();render()};
+clockNow();render();setInterval(()=>{if(S.live){clockNow();render()}},30000);
+</script></body></html>
